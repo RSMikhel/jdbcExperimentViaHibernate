@@ -15,9 +15,15 @@ public class Main {
 
         Course course = session.get(Course.class, 3);
 
-        System.out.println("Курс " + course.getName() + " длится всего " + course.getDuration() + " часов. Имеет описание:\n" + course.getDescription());
+        System.out.println("Курс: " + course.getName()
+                + "\nДлительность: " + course.getDuration() + " часов. "
+                + "\nОписание: " + course.getDescription()
+                + "\nПреподаватель: " + course.getTeacher().getName());
 
-        System.out.println(course.getName());
+        System.out.println("Список студентов: ");
+        course.getStudents().stream().map(s -> s.getName()).forEach(System.out::println);
+
+
 
 
         session.close();

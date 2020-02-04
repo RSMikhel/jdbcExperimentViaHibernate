@@ -1,4 +1,5 @@
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "Courses")
@@ -17,15 +18,30 @@ public class Course {
 
     private String description;
 
-    @Column(name = "teacher_id")   //для полей, название которых не совпадает с полем в БД добавляем аннтоацию
-    private int teacherId;
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "teacher_id")
+    private Teacher teacher;
 
     @Column(name = "students_count")
     private int studentsCount;
     private int price;
 
-    @Column(name = "price_per_hour")
+    @Column(name = "price_per_hour") //для полей, название которых не совпадает с полем в БД добавляем аннтоацию
     private float pricePerHour;
+
+    @ManyToMany
+    @JoinTable(name = "subscriptions",
+    joinColumns = {@JoinColumn(name = "course_id")},
+    inverseJoinColumns = {@JoinColumn(name = "student_id")})
+    private List<Student> students;
+
+    public List<Student> getStudents() {
+        return students;
+    }
+
+    public void setStudents(List<Student> students) {
+        this.students = students;
+    }
 
     public int getId() {
         return id;
@@ -67,12 +83,12 @@ public class Course {
         this.description = description;
     }
 
-    public int getTeacherId() {
-        return teacherId;
+    public Teacher getTeacher() {
+        return teacher;
     }
 
-    public void setTeacherId(int teacherId) {
-        this.teacherId = teacherId;
+    public void setTeacher(Teacher teacher) {
+        this.teacher = teacher;
     }
 
     public int getStudentsCount() {
