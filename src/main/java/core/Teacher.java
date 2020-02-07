@@ -17,7 +17,7 @@ public class Teacher {
     private int age;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "teacher")
-    List<Course> courses;
+    private List<Course> courses;
 
     public int getId() {
         return id;

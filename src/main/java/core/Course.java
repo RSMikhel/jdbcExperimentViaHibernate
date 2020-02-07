@@ -1,5 +1,7 @@
 package core;
 
+import lombok.Data;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -36,6 +38,17 @@ public class Course {
     joinColumns = {@JoinColumn(name = "course_id")},
     inverseJoinColumns = {@JoinColumn(name = "student_id")})
     private List<Student> students;
+
+    @OneToMany(mappedBy = "course")
+    private List<PurchaseList> purchaseList;
+
+    public List<PurchaseList> getPurchaseList() {
+        return purchaseList;
+    }
+
+    public void setPurchaseList(List<PurchaseList> purchaseList) {
+        this.purchaseList = purchaseList;
+    }
 
     public List<Student> getStudents() {
         return students;
@@ -116,4 +129,6 @@ public class Course {
     public void setPricePerHour(float pricePerHour) {
         this.pricePerHour = pricePerHour;
     }
+
+
 }

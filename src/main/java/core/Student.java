@@ -26,6 +26,17 @@ public class Student {
     inverseJoinColumns = {@JoinColumn(name = "course_id")})
     private List<Course> courses;
 
+    @OneToMany(mappedBy = "student")
+    private List<PurchaseList> purchaseList;
+
+    public List<PurchaseList> getPurchaseList() {
+        return purchaseList;
+    }
+
+    public void setPurchaseList(List<PurchaseList> purchaseList) {
+        this.purchaseList = purchaseList;
+    }
+
     public int getId() {
         return id;
     }

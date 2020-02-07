@@ -25,5 +25,6 @@
         <mapping class="core.Course"></mapping>
         <mapping class="core.Teacher"></mapping>
         <mapping class="core.Student"></mapping>
+        <mapping class="core.PurchaseList"></mapping>
     </session-factory>
 </hibernate-configuration>
