@@ -1,25 +1,20 @@
 package core;
 
+import lombok.Data;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
 @Entity
 @Table(name = "purchaselist")
+@Data
 public class PurchaseList {
     @EmbeddedId
     private PurchaseListId purchaseListId;
 
     @Column(name = "subscription_date")
     private Date subscriptionDate;
-
-    public Date getSubscriptionDate() {
-        return subscriptionDate;
-    }
-
-    public void setSubscriptionDate(Date subscriptionDate) {
-        this.subscriptionDate = subscriptionDate;
-    }
 
     @Embeddable
     public class PurchaseListId implements Serializable {

@@ -1,6 +1,7 @@
 package core;
 
 import core.Course;
+import lombok.Data;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -8,6 +9,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "students")
+@Data
 public class Student {
 
     @Id
@@ -20,60 +22,16 @@ public class Student {
     @Column(name = "registration_date")
     private Date registrationDate;
 
+ /* предыдущая версия без создания класса Subcriptions
     @ManyToMany
     @JoinTable(name = "subscriptions",
     joinColumns = {@JoinColumn(name = "student_id")},
     inverseJoinColumns = {@JoinColumn(name = "course_id")})
     private List<Course> courses;
+  */
 
-    @OneToMany(mappedBy = "student")
-    private List<PurchaseList> purchaseList;
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "student")
+    private List<Subscriptions> subscriptions;
 
-    public List<PurchaseList> getPurchaseList() {
-        return purchaseList;
-    }
 
-    public void setPurchaseList(List<PurchaseList> purchaseList) {
-        this.purchaseList = purchaseList;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public Date getRegistrationDate() {
-        return registrationDate;
-    }
-
-    public void setRegistrationDate(Date registrationDate) {
-        this.registrationDate = registrationDate;
-    }
-
-    public List<Course> getCourses() {
-        return courses;
-    }
-
-    public void setCourses(List<Course> courses) {
-        this.courses = courses;
-    }
 }
