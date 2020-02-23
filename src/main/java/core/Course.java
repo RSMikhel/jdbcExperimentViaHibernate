@@ -27,8 +27,8 @@ public class Course {
     @JoinColumn(name = "teacher_id")
     private Teacher teacher;
 
-    @Column(name = "students_count")
-    private int studentsCount;
+    @Column(name = "students_count", nullable = true)
+    private Integer studentsCount;
     private int price;
 
     @Column(name = "price_per_hour") //для полей, название которых не совпадает с полем в БД добавляем аннтоацию
@@ -42,7 +42,7 @@ public class Course {
 //    private List<Student> students;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "course")
-    private List<Subscriptions> subscriptions;
+    private List<Subscription> subscriptions;
 
 
 }

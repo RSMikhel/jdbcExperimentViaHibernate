@@ -1,6 +1,9 @@
 package core;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -8,32 +11,39 @@ import java.util.Date;
 
 @Entity
 @Table(name = "purchaselist")
-@Data
+
 public class PurchaseList {
+
     @EmbeddedId
-    private PurchaseListId purchaseListId;
+    @Getter
+    private PK key;
+
+    @Getter
+    @Setter
+    private int price;
 
     @Column(name = "subscription_date")
+    @Getter
+    @Setter
     private Date subscriptionDate;
 
     @Embeddable
-    public class PurchaseListId implements Serializable {
+    @ToString
+    public static class PK implements Serializable {
 
-        @ManyToOne
-        @JoinColumn(name = "student_name")
-        private Student student;
 
-        @ManyToOne
-        @JoinColumn(name = "course_name")
-        private Course course;
+        @Column(name = "student_name")
+        @Setter
+        @Getter
+        private String studentName;
 
-        public PurchaseListId(Student student, Course course) {
-            this.student = student;
-            this.course = course;
-        }
+        @Column(name = "course_name")
+        @Setter
+        @Getter
+        private String courseName;
+
 
     }
 
+    }
 
-
-}

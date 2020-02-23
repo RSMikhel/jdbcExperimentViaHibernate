@@ -18,13 +18,16 @@
         <property name="current_session_context_class">thread</property>
         <!-- Drop and re-create the database schema on startup -->
         <!-- важный параметр, имеет 4 значения, используем validate, будет выводить текст sql-запроса-->
-        <property name="hbm2ddl.auto">validate</property>
+        <property name="hbm2ddl.auto">update</property>
 
         <!-- указывает к какому классу применяются настройки
         Дополнительно к этому в самом классе проставляем необходимые аннотации-->
         <mapping class="core.Course"></mapping>
         <mapping class="core.Teacher"></mapping>
         <mapping class="core.Student"></mapping>
-        <mapping class="core.Subscriptions"></mapping>
+        <mapping class="core.Subscription"></mapping>
+        <mapping class="core.LinkedPurchaseList"></mapping>
+        <mapping class="core.PurchaseList"></mapping>
+
     </session-factory>
 </hibernate-configuration>

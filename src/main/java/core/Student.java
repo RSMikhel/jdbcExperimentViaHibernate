@@ -1,6 +1,5 @@
 package core;
 
-import core.Course;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -22,7 +21,7 @@ public class Student {
     @Column(name = "registration_date")
     private Date registrationDate;
 
- /* предыдущая версия без создания класса Subcriptions
+ /* предыдущая версия без создания класса Subscriptions
     @ManyToMany
     @JoinTable(name = "subscriptions",
     joinColumns = {@JoinColumn(name = "student_id")},
@@ -31,7 +30,7 @@ public class Student {
   */
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "student")
-    private List<Subscriptions> subscriptions;
+    private List<Subscription> subscriptions;
 
 
 }

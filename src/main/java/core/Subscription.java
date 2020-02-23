@@ -2,27 +2,22 @@ package core;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
-import java.util.Objects;
 
 @Entity
 @Table(name = "subscriptions")
-@IdClass(Subscriptions.SubscriptionsId.class)
+@IdClass(Subscription.SubscriptionsId.class)
 @Data
-public class Subscriptions {
+public class Subscription {
     @Id
-
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "course_id")
     private Course course;
 
     @Id
-
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "student_id")
     private Student student;
@@ -31,7 +26,7 @@ public class Subscriptions {
     @Column(name = "subscription_date")
     private Date subscriptionDate;
 
-    public Subscriptions() {
+    public Subscription() {
     }
 
     @EqualsAndHashCode
